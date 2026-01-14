@@ -1,8 +1,9 @@
 backend:
   name: github
-  repo: howardkhhu/trendy-island  # 例如: myname/trendy-island
-  branch: main # 你的主要分支名稱
-  base_url: https://api.netlify.com # 即使你不用 Netlify 託管，這行在搭配 Netlify Identity 時很重要
+  repo: howardkhhu/trendy-island
+  branch: main
+  base_url: https://api.netlify.com # 配合 Netlify Git Gateway 使用
+  auth_endpoint: auth
 
 media_folder: "images/uploads" # 圖片上傳後存放的路徑
 public_folder: "/images/uploads" # 網頁讀取圖片時的路徑
