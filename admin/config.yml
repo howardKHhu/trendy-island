@@ -1,8 +1,6 @@
 backend:
   name: git-gateway
   branch: main
-  base_url: https://api.netlify.com # 配合 Netlify Git Gateway 使用
-  auth_endpoint: auth
 
 media_folder: "images/uploads" # 圖片上傳後存放的路徑
 public_folder: "/images/uploads" # 網頁讀取圖片時的路徑
