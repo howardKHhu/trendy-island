@@ -1,0 +1,34 @@
+backend:
+  name: github
+  repo: 你的GitHub帳號/你的專案名稱  # 例如: myname/trendy-island
+  branch: main # 你的主要分支名稱
+
+media_folder: "images/uploads" # 圖片上傳後存放的路徑
+public_folder: "/images/uploads" # 網頁讀取圖片時的路徑
+
+collections:
+  - name: "news" # 潮流新聞區
+    label: "潮流新聞 (News)"
+    folder: "content/news" # 文章存放位置
+    create: true # 允許新增文章
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "語言", name: "language", widget: "select", options: ["zh", "en", "ja"] }
+      - { label: "文章標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime" }
+      - { label: "封面圖片", name: "image", widget: "image" }
+      - { label: "摘要", name: "description", widget: "text" }
+      - { label: "內文", name: "body", widget: "markdown" }
+
+  - name: "column" # 潮流專欄區
+    label: "潮流專欄 (Column)"
+    folder: "content/column"
+    create: true
+    slug: "column-{{slug}}"
+    fields:
+      - { label: "語言", name: "language", widget: "select", options: ["zh", "en", "ja"] }
+      - { label: "專欄標題", name: "title", widget: "string" }
+      - { label: "作者", name: "author", widget: "string" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "專欄封面", name: "image", widget: "image" }
+      - { label: "文章內容", name: "body", widget: "markdown" }
