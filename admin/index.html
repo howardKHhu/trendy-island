@@ -3,8 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <title>Trendy Island Content Manager</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <script>
+    // 解決 Not Found：強制指定 Netlify 站點 API
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+    // 手動指定 API 終端
+    localStorage.setItem('netlifySiteId', 'trendyisland.netlify.app');
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
