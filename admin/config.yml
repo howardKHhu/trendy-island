@@ -1,18 +1,22 @@
 backend:
   name: git-gateway
-  branch: main # 確保這是你的主要分支名稱
+  branch: main
 
 media_folder: "images/uploads"
-public_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "news"
-    label: "潮流新聞 (News)"
+    label: "潮流新聞"
     folder: "content/news"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false # 關閉預覽視窗可以減少出錯率
     fields:
-      - { label: "語言", name: "language", widget: "select", options: ["zh", "en", "ja"] }
+      - { label: "語言", name: "language", widget: "select", options: ["zh", "en", "ja"], default: "zh" }
       - { label: "標題", name: "title", widget: "string" }
-      - { label: "發布日期", name: "date", widget: "datetime" }
-      - { label: "封面圖片", name: "image", widget: "image" }
-      - { label: "內容", name: "body", widget: "markdown" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "封面圖片", name: "image", widget: "image", required: false }
+      - { label: "摘要", name: "description", widget: "text" }
+      - { label: "內文", name: "body", widget: "markdown" }
