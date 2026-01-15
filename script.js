@@ -65,8 +65,37 @@ window.onscroll = function() {
     }
 };
 
+// ... (保留您之前的 i18n 物件和 updateContent, changeLang 函數)
+
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 檢查網址參數是否有指定語系 (例如 ?lang=en)
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    
+    // 2. 檢查本地儲存是否已有使用者的偏好設定
     const savedLang = localStorage.getItem('preferredLang');
+    
+    // 3. 獲取瀏覽器語言 (只取前兩位代碼，如 'zh', 'en', 'ja')
     const browserLang = navigator.language.split('-')[0];
-    updateContent(savedLang || browserLang || 'en');
+    const supportedLangs = ['zh', 'en', 'ja'];
+    const defaultLang = 'en'; // 若都不符合，預設為英文
+
+    // 決定最終要顯示的語系
+    let finalLang;
+    
+    if (langParam && supportedLangs.includes(langParam)) {
+        finalLang = langParam;
+    } else if (savedLang && supportedLangs.includes(savedLang)) {
+        finalLang = savedLang;
+    } else if (supportedLangs.includes(browserLang)) {
+        finalLang = browserLang;
+    } else {
+        finalLang = defaultLang;
+    }
+
+    // 執行內容更新
+    updateContent(finalLang);
+    
+    // 額外優化：同步 HTML 的 lang 屬性，這對 SEO 很有幫助
+    document.documentElement.lang = finalLang;
 });
