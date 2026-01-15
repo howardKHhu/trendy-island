@@ -3,14 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <title>Trendy Island Admin</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 </head>
 <body>
   <script>
-    // 強力清除所有快取記憶
+    // 1. 徹底殺死所有 Netlify 的殘留記憶
     localStorage.clear();
     sessionStorage.clear();
-    console.log("快取已清除，請進行 GitHub 手動登入");
+    
+    // 2. 攔截並阻止所有向 netlify 發出的請求
+    const _fetch = window.fetch;
+    window.fetch = function() {
+        if (arguments[0].includes('netlify')) {
+            console.log('已攔截 Netlify 請求');
+            return Promise.reject('Netlify disabled');
+        }
+        return _fetch.apply(this, arguments);
+    };
   </script>
+  
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
