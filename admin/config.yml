@@ -2,15 +2,9 @@ backend:
   name: github
   repo: howardkhhu/trendy-island
   branch: main
-  commit_messages:
-    create: "Create {{collection}} – {{slug}}"
-    update: "Update {{collection}} – {{slug}}"
-    delete: "Delete {{collection}} – {{slug}}"
-    uploadMedia: "Upload {{path}}"
-    moveMedia: "Move {{path}}"
 
 media_folder: "images/uploads"
-public_folder: "/images/uploads"
+public_folder: "images/uploads"
 
 collections:
   - name: "news"
