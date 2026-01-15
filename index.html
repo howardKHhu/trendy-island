@@ -3,60 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trendy Island | 潮流島嶼</title>
+    <title>Trendy Island | Connecting Identity & Culture</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
         <div class="logo">TRENDY ISLAND</div>
+        <div class="lang-switcher">
+            <span onclick="changeLang('zh')">ZH</span>
+            <span onclick="changeLang('en')">EN</span>
+            <span onclick="changeLang('ja')">JA</span>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <h1 id="hero-title">Exploring Culture & Identity</h1>
-            <p id="hero-desc">Connecting the world through fashion history and social bonds.</p>
+            <h1 id="hero-title">Loading...</h1>
+            <p id="hero-desc"></p>
         </div>
     </header>
 
     <main class="container">
-
-        <section id="podcast" class="glass-card">
-    <h2 id="section-podcast-title">Listen on Trendy Island</h2>
-    <div class="podcast-container">
-        <a href="https://open.spotify.com/show/0b0bvzZ64hTaifBIOC69g6" target="_blank" class="podcast-link spotify-btn">
-            <div class="icon-wrapper">
-                <img id="spotify-icon" src="images/spotify-custom-icon.svg" alt="Spotify">
-            </div>
-        </a>
-
-        <a href="https://podcasts.apple.com/podcast/1866784652" target="_blank" class="podcast-link apple-btn">
-            <div class="icon-wrapper">
-                <img id="apple-icon" src="images/apple-custom-icon.svg" alt="Apple Podcast">
-            </div>
-        </a>
-    </div>
-</section>
         <section id="about" class="glass-card about-section">
-    <h2 id="about-title">About Us</h2>
-    <p id="about-content" class="warm-text">
-        </p>
-</section>
+            <h2 id="about-title">About Us</h2>
+            <p id="about-content" class="warm-text"></p>
+        </section>
+
+        <section id="latest-episode" class="glass-card episode-section">
+            <h3 id="latest-label">Latest Episode</h3>
+            <div id="spotify-player-container">
+                <iframe 
+                    id="spotify-player"
+                    style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/show/0b0bvzZ64hTaifBIOC69g6?utm_source=generator&theme=0" 
+                    width="100%" 
+                    height="152" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <section id="podcast" class="podcast-section">
+            <h2 id="podcast-label">Listen on Platforms</h2>
+            <div class="podcast-container">
+                <a href="ttps://open.spotify.com/show/0b0bvzZ64hTaifBIOC69g6" target="_blank" class="podcast-link spotify-btn">
+                    <div class="icon-wrapper">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
+                    </div>
+                    <span>Spotify</span>
+                </a>
+                <a href="https://podcasts.apple.com/podcast/1866784652" target="_blank" class="podcast-link apple-btn">
+                    <div class="icon-wrapper">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Apple_Podcasts_logo.svg" alt="Apple Podcast">
+                    </div>
+                    <span>Apple Podcasts</span>
+                </a>
+            </div>
+        </section>
     </main>
 
+    <footer>
+        <div class="footer-gradient-line"></div>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="logo">TRENDY ISLAND</h2>
+                <p id="footer-slogan"></p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 id="footer-follow">Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank">Instagram</a>
+                        <a href="#" target="_blank">Threads</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Trendy Island. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="back-to-top" onclick="scrollToTop()">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+
     <script src="script.js"></script>
-   <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script> 
 </body>
 </html>
