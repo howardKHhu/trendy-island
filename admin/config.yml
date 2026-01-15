@@ -4,17 +4,15 @@ backend:
   branch: main
 
 media_folder: "images/uploads"
-public_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "news"
     label: "潮流新聞"
     folder: "content/news"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "語言", name: "language", widget: "select", options: ["zh", "en", "ja"], default: "zh" }
       - { label: "標題", name: "title", widget: "string" }
       - { label: "日期", name: "date", widget: "datetime" }
-      - { label: "摘要", name: "description", widget: "text" }
-      - { label: "內文", name: "body", widget: "markdown" }
+      - { label: "內容", name: "body", widget: "markdown" }
