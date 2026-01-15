@@ -6,9 +6,10 @@
 </head>
 <body>
   <script>
-    // 徹底清除之前 Netlify 留下的快取，避免它一直彈跳 Netlify 登入
-    localStorage.removeItem('netlifySiteId');
-    localStorage.removeItem('decap-cms-user');
+    // 強力清除所有快取記憶
+    localStorage.clear();
+    sessionStorage.clear();
+    console.log("快取已清除，請進行 GitHub 手動登入");
   </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
