@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: howardkhhu/trendy-island # 確保這是你的專案路徑
-  branch: main
-  base_url: https://cms-proxy.onrender.com
-  auth_endpoint: auth
+  name: git-gateway
+  branch: main # 確保這是你的主要分支名稱
 
 media_folder: "images/uploads"
 public_folder: "images/uploads"
