@@ -61,3 +61,23 @@ nav {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
+.about-section {
+    margin-top: 100px;
+    padding: 60px;
+    border: 1px solid rgba(255, 138, 0, 0.2); /* 淡淡的暖橙色邊框 */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.warm-text {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 2;
+    letter-spacing: 0.05em;
+    /* 科技溫暖感：文字微微發光 */
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* 在中文字體下增加行距優化 */
+body[lang="zh"] .warm-text {
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
