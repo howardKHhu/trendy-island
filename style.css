@@ -312,3 +312,12 @@ footer {
     .social-icons { margin-top: 10px; margin-right: 0; }
     .social-icons a { margin: 0 10px; }
 }
+/* 導覽列 Logo 圖標優化 */
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; /* 確保是圓形 */
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+}
