@@ -6,7 +6,7 @@ const i18n = {
         about_content: "Trendy Island 整合全球潮流文化與歷史，探討時尚潮流、自我認同與社會的羈絆。我們在科技時代中，尋找服飾背後的人文溫度，挖掘時尚背後的人文意義與社會脈絡。",
         podcast_label: "收聽我們的節目",
         latest_label: "最新一集節目",
-        footer_follow: "追蹤我們",
+        footer_follow: "",
         footer_slogan: "連結身分、文化與社會的島嶼"
     },
     'en': {
@@ -16,7 +16,7 @@ const i18n = {
         about_content: "Trendy Island integrates global trend cultures and histories, exploring the bonds between fashion, self-identity, and society. We are dedicated to rediscovering the cultural significance behind fashion.",
         podcast_label: "Listen to Trendy Island",
         latest_label: "Latest Episode",
-        footer_follow: "Follow Us",
+        footer_follow: "",
         footer_slogan: "Connecting Identity & Culture"
     },
     'ja': {
@@ -26,7 +26,7 @@ const i18n = {
         about_content: "Trendy Islandは、潮流文化と歴史を統合し、ファッション、自己アイデンティティ、そして社会の絆を探求するプラットフォームです。服の背景にある物語を掘り起こすことに尽力しています。",
         podcast_label: "番組を聴く",
         latest_label: "最新のエピソード",
-        footer_follow: "フォローする",
+        footer_follow: "",
         footer_slogan: "文化とアイデンティティを繋ぐ"
     }
 };
