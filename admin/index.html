@@ -2,26 +2,16 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trendy Island Content Manager</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <script>
-  // 手動連結到你的 Netlify 站點
-  // 這樣 GitHub Pages 才能找到 Identity 服務
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
+    // 強制指定 Netlify 站點，解決 Unable to access identity 錯誤
+    if (window.localStorage) {
+      window.localStorage.setItem('netlifySiteId', 'trendyisland.netlify.app');
     }
-  });
-</script>
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
