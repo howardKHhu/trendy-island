@@ -146,53 +146,62 @@ nav {
     margin-bottom: 30px;
 }
 
+/* --- Podcast 平台連結區優化 --- */
 .podcast-container {
     display: flex;
-    gap: 20px;
+    gap: 25px; /* 加大按鈕間距 */
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 40px;
 }
 
 .podcast-link {
     display: flex;
     align-items: center;
-    padding: 14px 32px;
+    padding: 18px 38px; /* 增加按鈕的內距，讓它更顯眼 */
     border-radius: 100px;
     text-decoration: none;
     color: white;
-    background: var(--glass);
+    background: rgba(255, 255, 255, 0.05); /* 稍微加深一點背景色 */
     border: 1px solid var(--glass-border);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 自訂圖示樣式 */
+/* 關鍵修正：加大自訂圖示的尺寸 */
 .icon-wrapper {
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
+    width: 40px;  /* 從 24px 加大到 40px */
+    height: 40px; /* 從 24px 加大到 40px */
+    margin-right: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* 確保圖片不超出邊框 */
 }
 
 .icon-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 100%;       /* 強制寬度填滿 */
+    height: 100%;      /* 強制高度填滿 */
+    object-fit: contain; /* 保持比例，不變形且不被裁切 */
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); /* 增加一點微光，讓暗色圖標更清晰 */
 }
 
+.podcast-link span {
+    font-size: 1.1rem; /* 稍微加大文字 */
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* 懸停效果增強 */
 .spotify-btn:hover {
     border-color: #1DB954;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(30, 215, 94, 0.2);
-    background: rgba(30, 215, 94, 0.1);
+    background: rgba(30, 215, 94, 0.15);
+    box-shadow: 0 0 25px rgba(30, 215, 94, 0.3);
 }
 
 .apple-btn:hover {
     border-color: #a05aff;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(160, 90, 255, 0.2);
-    background: rgba(160, 90, 255, 0.1);
+    background: rgba(160, 90, 255, 0.15);
+    box-shadow: 0 0 25px rgba(160, 90, 255, 0.3);
 }
 
 /* --- 7. Footer 數位日落 --- */
