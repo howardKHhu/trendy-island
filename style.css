@@ -102,10 +102,20 @@ nav {
     border: 1px solid var(--glass-border);
     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.icon-wrapper img { width: 22px; margin-right: 12px; }
-.spotify-btn:hover { border-color: #1DB954; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(30, 215, 94, 0.2); }
-.apple-btn:hover { border-color: #a05aff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(160, 90, 255, 0.2); }
+.icon-wrapper {
+    width: 24px;   /* 容器寬度 */
+    height: 24px;  /* 容器高度 */
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.icon-wrapper img {
+    width: 100%;    /* 寬度填滿容器 */
+    height: auto;   /* 高度依比例縮放 */
+    object-fit: contain; /* 確保圖片不被裁切 */
+}
 /* Footer 數位日落 */
 footer {
     position: relative;
