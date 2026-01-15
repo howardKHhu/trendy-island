@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://你的專案.pages.dev/?lang=zh</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://trendyisland.pages.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendyisland.pages.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://trendyisland.pages.dev/?lang=ja"/>
+    <lastmod>2026-01-15</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://你的專案.pages.dev/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://trendyisland.pages.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendyisland.pages.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://trendyisland.pages.dev/?lang=ja"/>
+    <lastmod>2026-01-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://你的專案.pages.dev/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://trendyisland.pages.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendyisland.pages.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://trendyisland.pages.dev/?lang=ja"/>
+    <lastmod>2026-01-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+</urlset>
