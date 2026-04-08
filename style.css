@@ -86,6 +86,27 @@ nav {
     font-weight: 300;
 }
 
+.hero-cta {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 14px 36px;
+    background: var(--accent-warm);
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(229, 46, 113, 0.4);
+    opacity: 0.85;
+}
+
 /* --- 4. 內容容器與卡片 --- */
 .container {
     padding: 0 10%;
@@ -120,7 +141,40 @@ nav {
     margin-bottom: 0;
 }
 
-/* --- 5. Podcast 播放器區塊 --- */
+/* --- 5. 主題標籤區塊 --- */
+.topics-section h2 {
+    font-family: 'Archivo', sans-serif;
+    margin-top: 0;
+    background: var(--accent-warm);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
+
+.tag {
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+.tag:hover {
+    border-color: #ff8a00;
+    color: #ff8a00;
+    background: rgba(255, 138, 0, 0.08);
+}
+
+/* --- 6. Podcast 播放器區塊 --- */
 .episode-section #latest-label {
     font-size: 0.8rem;
     text-transform: uppercase;

@@ -1,11 +1,14 @@
 const i18n = {
     'zh': {
         page_title: "Trendy Island | 連結身分、文化與社會",
-        meta_description: "Trendy Island 整合全球潮流文化與歷史，探討時尚、自我認同與社會的羈絆。在科技冷冽的時代，尋找服飾背後的人文溫度。",
+        meta_description: "Trendy Island 是探討時尚、文化與社會認同的深度 Podcast。每週一集，帶你從服飾看見世界。",
         hero_title: "連結身分、文化與社會",
-        hero_desc: "在科技冷冽的時代，尋找潮流中流淌的人文溫度。",
+        hero_desc: "每週深度對談，帶你從時尚看見文化、認同與社會的連結。",
+        hero_cta: "立即收聽 →",
         about_title: "關於我們",
-        about_content: "Trendy Island 整合全球潮流文化與歷史，探討時尚潮流、自我認同與社會的羈絆。我們在科技時代中，尋找服飾背後的人文溫度，挖掘時尚背後的人文意義與社會脈絡。",
+        about_content: "Trendy Island 是一個以深度對談為核心的潮流文化 Podcast。我們不只談穿什麼、流行什麼，而是追問「為什麼」——為什麼這件衣服代表了某個世代？為什麼次文化會成為主流？無論你是時尚愛好者、文化觀察者，還是對服飾背後故事感到好奇的人，這裡就是你的島嶼。",
+        topics_title: "探討主題",
+        topics: ["日本古著文化", "韓流與身分認同", "永續時尚", "街頭文化", "品牌歷史", "次文化與社會"],
         podcast_label: "收聽我們的節目",
         latest_label: "最新一集節目",
         footer_follow: "",
@@ -13,11 +16,14 @@ const i18n = {
     },
     'en': {
         page_title: "Trendy Island | Connecting Identity & Culture",
-        meta_description: "Trendy Island integrates global trend cultures and histories, exploring the bonds between fashion, self-identity, and society. Discovering human warmth within trends in a cold tech era.",
+        meta_description: "Trendy Island is a weekly podcast exploring fashion, identity, and society. New episodes every week.",
         hero_title: "Connecting Identity & Culture",
-        hero_desc: "Discovering human warmth within trends in a cold tech era.",
+        hero_desc: "A weekly podcast exploring fashion, identity, and society. New episodes every week.",
+        hero_cta: "Listen Now →",
         about_title: "About Us",
-        about_content: "Trendy Island integrates global trend cultures and histories, exploring the bonds between fashion, self-identity, and society. We are dedicated to rediscovering the cultural significance behind fashion.",
+        about_content: "Trendy Island is a deep-dive podcast at the intersection of fashion, culture, and society. We don't just cover what's trending — we ask why. Why does a garment define a generation? Why does subculture become mainstream? Whether you're a fashion enthusiast or simply curious about the stories behind what we wear, this is your island.",
+        topics_title: "Topics We Explore",
+        topics: ["Japanese Vintage Culture", "K-Culture & Identity", "Sustainable Fashion", "Streetwear", "Brand History", "Subculture & Society"],
         podcast_label: "Listen to Trendy Island",
         latest_label: "Latest Episode",
         footer_follow: "",
@@ -25,11 +31,14 @@ const i18n = {
     },
     'ja': {
         page_title: "Trendy Island | 文化とアイデンティティを繋ぐ",
-        meta_description: "Trendy Islandは、潮流文化と歴史を統合し、ファッション、自己アイデンティティ、社会の絆を探求するポッドキャストです。テクノロジーの時代にトレンドの温もりを見つけます。",
+        meta_description: "Trendy Islandは、ファッション・文化・アイデンティティを深掘りする週刊ポッドキャストです。",
         hero_title: "文化とアイデンティティを繋ぐ",
-        hero_desc: "冷たいテクノロジーの時代に、トレンドの中に流れる温もりを見つける。",
+        hero_desc: "ファッション・文化・アイデンティティを深掘りする週刊ポッドキャスト。毎週新エピソード配信。",
+        hero_cta: "今すぐ聴く →",
         about_title: "私たちについて",
-        about_content: "Trendy Islandは、潮流文化と歴史を統合し、ファッション、自己アイデンティティ、そして社会の絆を探求するプラットフォームです。服の背景にある物語を掘り起こすことに尽力しています。",
+        about_content: "Trendy Islandは、ファッション、文化、社会の交差点を深掘りするポッドキャストです。何がトレンドかを語るだけでなく、「なぜ」を問います。なぜある服がある世代を定義するのか？なぜサブカルチャーがメインストリームになるのか？ファッション好きから服の裏にある物語に興味を持つ方まで、ここはあなたのための島です。",
+        topics_title: "探求するテーマ",
+        topics: ["日本ヴィンテージ文化", "K-カルチャーとアイデンティティ", "サステナブルファッション", "ストリートカルチャー", "ブランドの歴史", "サブカルチャーと社会"],
         podcast_label: "番組を聴く",
         latest_label: "最新のエピソード",
         footer_follow: "",
@@ -45,8 +54,18 @@ function updateContent(lang) {
 
     document.getElementById('hero-title').innerText = data.hero_title;
     document.getElementById('hero-desc').innerText = data.hero_desc;
+    document.getElementById('hero-cta').innerText = data.hero_cta;
     document.getElementById('about-title').innerText = data.about_title;
     document.getElementById('about-content').innerText = data.about_content;
+    document.getElementById('topics-title').innerText = data.topics_title;
+    const tagsContainer = document.getElementById('topics-tags');
+    tagsContainer.innerHTML = '';
+    data.topics.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = tag;
+        tagsContainer.appendChild(span);
+    });
     document.getElementById('podcast-label').innerText = data.podcast_label;
     document.getElementById('latest-label').innerText = data.latest_label;
     document.getElementById('footer-follow').innerText = data.footer_follow;
