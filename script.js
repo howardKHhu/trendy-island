@@ -1,5 +1,7 @@
 const i18n = {
     'zh': {
+        page_title: "Trendy Island | 連結身分、文化與社會",
+        meta_description: "Trendy Island 整合全球潮流文化與歷史，探討時尚、自我認同與社會的羈絆。在科技冷冽的時代，尋找服飾背後的人文溫度。",
         hero_title: "連結身分、文化與社會",
         hero_desc: "在科技冷冽的時代，尋找潮流中流淌的人文溫度。",
         about_title: "關於我們",
@@ -10,6 +12,8 @@ const i18n = {
         footer_slogan: "連結身分、文化與社會的島嶼"
     },
     'en': {
+        page_title: "Trendy Island | Connecting Identity & Culture",
+        meta_description: "Trendy Island integrates global trend cultures and histories, exploring the bonds between fashion, self-identity, and society. Discovering human warmth within trends in a cold tech era.",
         hero_title: "Connecting Identity & Culture",
         hero_desc: "Discovering human warmth within trends in a cold tech era.",
         about_title: "About Us",
@@ -20,6 +24,8 @@ const i18n = {
         footer_slogan: "Connecting Identity & Culture"
     },
     'ja': {
+        page_title: "Trendy Island | 文化とアイデンティティを繋ぐ",
+        meta_description: "Trendy Islandは、潮流文化と歴史を統合し、ファッション、自己アイデンティティ、社会の絆を探求するポッドキャストです。テクノロジーの時代にトレンドの温もりを見つけます。",
         hero_title: "文化とアイデンティティを繋ぐ",
         hero_desc: "冷たいテクノロジーの時代に、トレンドの中に流れる温もりを見つける。",
         about_title: "私たちについて",
@@ -33,8 +39,10 @@ const i18n = {
 
 function updateContent(lang) {
     const data = i18n[lang] || i18n['en'];
-    
-    // 更新所有文字節點
+
+    document.title = data.page_title;
+    document.querySelector('meta[name="description"]').setAttribute('content', data.meta_description);
+
     document.getElementById('hero-title').innerText = data.hero_title;
     document.getElementById('hero-desc').innerText = data.hero_desc;
     document.getElementById('about-title').innerText = data.about_title;
@@ -64,8 +72,6 @@ window.onscroll = function() {
         btn.classList.remove('show');
     }
 };
-
-// ... (保留您之前的 i18n 物件和 updateContent, changeLang 函數)
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. 檢查網址參數是否有指定語系 (例如 ?lang=en)
