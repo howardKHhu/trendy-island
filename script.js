@@ -93,7 +93,7 @@ function updateContent(lang) {
 
     // Push lang data to episodes module if it's loaded
     if (typeof window.updateEpisodeLang === 'function') {
-        window.updateEpisodeLang(data);
+        window.updateEpisodeLang(data, lang);
     }
 
     document.documentElement.lang = lang;

@@ -1,33 +1,57 @@
 /**
- * episodes.js — Episode list renderer + live search
+ * episodes.js — Bilingual episode list renderer + live search
  *
- * Fetches from /api/episodes (Cloudflare Pages Function),
- * renders episode cards, and handles keyword search.
+ * Fetches grouped bilingual episodes from /api/episodes (Cloudflare Pages Function).
+ * Each episode object has: { episode, date, en: {...}, zh: {...} }
  *
- * Exposes window.updateEpisodeLang(langData) so script.js can
- * push updated translations when the user switches language.
+ * Display language (epLang) defaults to site language if zh, otherwise en.
+ * User can override via the EN / 中文 toggle buttons in the episodes header.
+ *
+ * Public API (called by script.js):
+ *   window.updateEpisodeLang(langData, siteLang) — called on language switch
+ *   window.setEpLang(lang)                        — called by toggle buttons
  */
 
 (function () {
-  const listEl     = document.getElementById('episode-list');
-  const searchEl   = document.getElementById('episode-search');
-  const loadingEl  = document.getElementById('episodes-loading');
-  const countEl    = document.getElementById('episodes-count');
+  const listEl    = document.getElementById('episode-list');
+  const searchEl  = document.getElementById('episode-search');
+  const loadingEl = document.getElementById('episodes-loading');
+  const countEl   = document.getElementById('episodes-count');
 
-  let allEpisodes  = [];
-  let langData     = {};
+  let allEpisodes = [];
+  let langData    = {};
+  // Default episode language: follow site lang if zh, otherwise en
+  let epLang = (document.documentElement.lang === 'zh') ? 'zh' : 'en';
 
-  // ─── Public API (called by script.js updateContent) ─────────────────────
-  window.updateEpisodeLang = function (data) {
+  // ─── Public API ──────────────────────────────────────────────────────────
+
+  window.updateEpisodeLang = function (data, siteLang) {
     langData = data;
     if (searchEl) searchEl.placeholder = data.episodes_search_placeholder;
-    // Re-render if episodes are already loaded
-    if (allEpisodes.length > 0) {
-      renderFiltered(searchEl ? searchEl.value : '');
+    // Follow site language switch (zh ↔ everything else)
+    const newEpLang = (siteLang === 'zh') ? 'zh' : 'en';
+    if (newEpLang !== epLang) {
+      epLang = newEpLang;
+      updateToggleUI();
     }
+    if (allEpisodes.length > 0) renderFiltered(searchEl ? searchEl.value : '');
   };
 
+  window.setEpLang = function (lang) {
+    epLang = lang;
+    updateToggleUI();
+    renderFiltered(searchEl ? searchEl.value : '');
+  };
+
+  function updateToggleUI() {
+    const enBtn = document.getElementById('ep-lang-en');
+    const zhBtn = document.getElementById('ep-lang-zh');
+    if (enBtn) enBtn.classList.toggle('active', epLang === 'en');
+    if (zhBtn) zhBtn.classList.toggle('active', epLang === 'zh');
+  }
+
   // ─── Fetch ───────────────────────────────────────────────────────────────
+
   async function loadEpisodes() {
     try {
       const res = await fetch('/api/episodes');
@@ -43,13 +67,20 @@
   }
 
   // ─── Render ──────────────────────────────────────────────────────────────
+
   function renderFiltered(query) {
     const q = query.toLowerCase().trim();
+
+    // Filter by search query against the active language content
     const results = q
-      ? allEpisodes.filter(ep =>
-          ep.title.toLowerCase().includes(q) ||
-          ep.description.toLowerCase().includes(q)
-        )
+      ? allEpisodes.filter(ep => {
+          const content = ep[epLang] || ep.en || ep.zh;
+          if (!content) return false;
+          return (
+            content.title.toLowerCase().includes(q) ||
+            content.description.toLowerCase().includes(q)
+          );
+        })
       : allEpisodes;
 
     if (loadingEl) loadingEl.style.display = 'none';
@@ -70,11 +101,18 @@
     }
 
     const fragment = document.createDocumentFragment();
-    results.forEach(ep => fragment.appendChild(buildCard(ep, q)));
+    results.forEach(ep => {
+      const card = buildCard(ep, q);
+      if (card) fragment.appendChild(card);
+    });
     listEl.appendChild(fragment);
   }
 
   function buildCard(ep, query) {
+    // Pick content for active language, fall back to whichever exists
+    const content = ep[epLang] || ep.en || ep.zh;
+    if (!content) return null;
+
     const card = document.createElement('div');
     card.className = 'episode-card';
 
@@ -84,11 +122,11 @@
       <div class="episode-meta">
         <span class="episode-num">EP.${escHtml(ep.episode)}</span>
         ${ep.date ? `<span class="episode-date">${escHtml(ep.date)}</span>` : ''}
-        ${ep.duration ? `<span class="episode-duration">${escHtml(ep.duration)}</span>` : ''}
+        ${content.duration ? `<span class="episode-duration">${escHtml(content.duration)}</span>` : ''}
       </div>
-      <h3 class="episode-title">${highlight(escHtml(ep.title), query)}</h3>
-      ${ep.description ? `<p class="episode-desc">${highlight(escHtml(ep.description), query)}</p>` : ''}
-      ${ep.url ? `<a href="${escHtml(ep.url)}" target="_blank" rel="noopener noreferrer" class="episode-listen">${escHtml(listenText)}</a>` : ''}
+      <h3 class="episode-title">${highlight(escHtml(content.title), query)}</h3>
+      ${content.description ? `<p class="episode-desc">${highlight(escHtml(content.description), query)}</p>` : ''}
+      ${content.url ? `<a href="${escHtml(content.url)}" target="_blank" rel="noopener noreferrer" class="episode-listen">${escHtml(listenText)}</a>` : ''}
     `;
     return card;
   }
@@ -109,10 +147,13 @@
   }
 
   // ─── Search ──────────────────────────────────────────────────────────────
+
   if (searchEl) {
     searchEl.addEventListener('input', e => renderFiltered(e.target.value));
   }
 
   // ─── Init ────────────────────────────────────────────────────────────────
+
+  updateToggleUI();
   loadEpisodes();
 })();

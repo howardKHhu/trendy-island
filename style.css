@@ -340,6 +340,37 @@ footer {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.3);
     letter-spacing: 0.5px;
+    margin-left: auto;
+}
+
+.ep-lang-toggle {
+    display: flex;
+    gap: 4px;
+    margin-left: 16px;
+}
+
+.ep-lang-btn {
+    padding: 4px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+}
+
+.ep-lang-btn:hover {
+    border-color: rgba(255, 138, 0, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.ep-lang-btn.active {
+    border-color: #ff8a00;
+    color: #ff8a00;
+    background: rgba(255, 138, 0, 0.08);
 }
 
 .search-wrapper {
