@@ -108,9 +108,10 @@ function parseRss(xml) {
 }
 
 function extractTag(xml, tag) {
-  // Match CDATA or plain content
+  // Use (?:\s[^>]*)? so the tag name must be followed by > or whitespace,
+  // preventing <itunes:episode...> from matching <itunes:episodetype>
   const re = new RegExp(
-    `<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([\\s\\S]*?))<\\/${tag}>`,
+    `<${tag}(?:\\s[^>]*)?>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([\\s\\S]*?))<\\/${tag}>`,
     'i'
   );
   const m = xml.match(re);
