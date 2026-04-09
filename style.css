@@ -468,17 +468,42 @@ footer {
     margin: 0 0 10px;
 }
 
-.episode-listen {
-    display: inline-block;
-    font-size: 0.82rem;
-    color: #ff8a00;
+.episode-links {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.ep-platform-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 100px;
     text-decoration: none;
     font-weight: 500;
+    letter-spacing: 0.3px;
+    border: 1px solid;
     transition: var(--transition);
 }
 
-.episode-listen:hover {
-    color: #e52e71;
+.ep-spotify {
+    color: #1DB954;
+    border-color: rgba(29, 185, 84, 0.3);
+}
+
+.ep-spotify:hover {
+    background: rgba(29, 185, 84, 0.1);
+    border-color: #1DB954;
+}
+
+.ep-apple {
+    color: #a05aff;
+    border-color: rgba(160, 90, 255, 0.3);
+}
+
+.ep-apple:hover {
+    background: rgba(160, 90, 255, 0.1);
+    border-color: #a05aff;
 }
 
 /* Search highlight */

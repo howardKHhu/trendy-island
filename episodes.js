@@ -108,6 +108,9 @@
     listEl.appendChild(fragment);
   }
 
+  const SPOTIFY_SHOW = 'https://open.spotify.com/show/0b0bvzZ64hTaifBIOC69g6';
+  const APPLE_SHOW   = 'https://podcasts.apple.com/podcast/1866784652';
+
   function buildCard(ep, query) {
     // Pick content for active language, fall back to whichever exists
     const content = ep[epLang] || ep.en || ep.zh;
@@ -116,7 +119,8 @@
     const card = document.createElement('div');
     card.className = 'episode-card';
 
-    const listenText = langData.episodes_listen || 'Listen →';
+    const spotifyHref = escHtml(content.spotifyUrl || SPOTIFY_SHOW);
+    const appleHref   = escHtml(content.appleUrl   || APPLE_SHOW);
 
     card.innerHTML = `
       <div class="episode-meta">
@@ -126,7 +130,10 @@
       </div>
       <h3 class="episode-title">${highlight(escHtml(content.title), query)}</h3>
       ${content.description ? `<p class="episode-desc">${highlight(escHtml(content.description), query)}</p>` : ''}
-      ${content.url ? `<a href="${escHtml(content.url)}" target="_blank" rel="noopener noreferrer" class="episode-listen">${escHtml(listenText)}</a>` : ''}
+      <div class="episode-links">
+        <a href="${spotifyHref}" target="_blank" rel="noopener noreferrer" class="ep-platform-btn ep-spotify">Spotify</a>
+        <a href="${appleHref}" target="_blank" rel="noopener noreferrer" class="ep-platform-btn ep-apple">Apple Podcasts</a>
+      </div>
     `;
     return card;
   }
