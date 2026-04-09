@@ -4,15 +4,16 @@
  * Flow:
  *  1. Look up the podcast RSS feed URL via Apple iTunes API (CORS-enabled, public)
  *  2. Fetch and parse the RSS XML server-side (avoids browser CORS restrictions)
- *  3. Return a clean JSON array of episodes
- *  4. Response is cached for 1 hour at Cloudflare edge
+ *  3. Group bilingual items (EN + ZH) by episode number
+ *  4. Return a JSON array of { episode, date, en: {...}, zh: {...} }
+ *  5. Response is cached for 1 hour at Cloudflare edge
  */
 
 const APPLE_PODCAST_ID = '1866784652';
 const CACHE_TTL = 3600; // seconds
 
 export async function onRequest(context) {
-  const cacheKey = new Request('https://trendyisland-episodes-cache/v3', context.request);
+  const cacheKey = new Request('https://trendyisland-episodes-cache/v4', context.request);
   const cache = caches.default;
 
   // Serve from edge cache if available
@@ -58,10 +59,9 @@ async function fetchRss(feedUrl) {
 }
 
 function parseRss(xml) {
-  // Split into <item> blocks
   const rawItems = xml.split(/<item[\s>]/i).slice(1);
 
-  return rawItems
+  const flat = rawItems
     .map((raw, index) => {
       const end = raw.indexOf('</item>');
       const item = end > -1 ? raw.slice(0, end) : raw;
@@ -74,10 +74,8 @@ function parseRss(xml) {
       const episodeNum  = extractTag(item, 'itunes:episode');
       const duration    = extractTag(item, 'itunes:duration');
 
-      // Prefer a Spotify/http link over a bare guid
       const listenUrl = [link, guid].find(u => u?.startsWith('http')) ?? '';
 
-      // Strip HTML tags and truncate description
       const cleanDesc = description
         .replace(/<[^>]+>/g, '')
         .replace(/&amp;/g, '&')
@@ -87,7 +85,6 @@ function parseRss(xml) {
         .replace(/\s+/g, ' ')
         .trim();
 
-      // Format date as YYYY-MM-DD
       let date = '';
       if (pubDate) {
         try { date = new Date(pubDate).toISOString().split('T')[0]; } catch {}
@@ -105,6 +102,47 @@ function parseRss(xml) {
       };
     })
     .filter(ep => ep.title);
+
+  return groupByEpisode(flat);
+}
+
+/**
+ * Groups bilingual RSS items by episode number.
+ * Language is detected by presence of CJK characters in the title.
+ * Output: [{ episode, date, en: { title, description, duration, url }, zh: { ... } }, ...]
+ */
+function groupByEpisode(items) {
+  const map = new Map();
+
+  items.forEach(item => {
+    const key = item.episode;
+
+    if (!map.has(key)) {
+      map.set(key, { episode: key, date: item.date });
+    }
+    const group = map.get(key);
+
+    // Keep the earliest date
+    if (item.date && (!group.date || item.date < group.date)) {
+      group.date = item.date;
+    }
+
+    // Detect language: CJK characters → Chinese, otherwise English
+    const isChinese = /[\u4e00-\u9fff\u3400-\u4dbf]/.test(item.title);
+    const lang = isChinese ? 'zh' : 'en';
+
+    // Don't overwrite if already assigned
+    if (!group[lang]) {
+      group[lang] = {
+        title: item.title,
+        description: item.description,
+        duration: item.duration,
+        url: item.url,
+      };
+    }
+  });
+
+  return Array.from(map.values());
 }
 
 function extractTag(xml, tag) {
@@ -126,9 +164,7 @@ function extractAttr(xml, tag, attr) {
 
 function formatDuration(raw) {
   if (!raw) return '';
-  // Already formatted as HH:MM:SS or MM:SS
   if (raw.includes(':')) return raw;
-  // Plain seconds
   const secs = parseInt(raw, 10);
   if (isNaN(secs)) return '';
   const h = Math.floor(secs / 3600);
