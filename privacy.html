@@ -24,12 +24,19 @@
 </head>
 <body>
     <nav>
-        <a href="/" class="logo" style="text-decoration:none;-webkit-text-fill-color:transparent;">TRENDY ISLAND</a>
-        <div class="lang-switcher">
-            <span onclick="changeLang('zh')">ZH</span>
-            <span onclick="changeLang('en')">EN</span>
-            <span onclick="changeLang('ja')">JA</span>
+        <a href="/" class="logo">TRENDY ISLAND</a>
+        <div class="nav-links" id="nav-links">
+            <a href="/about.html" id="nav-about" class="nav-link">About</a>
+            <a href="/episodes.html" id="nav-episodes" class="nav-link">Episodes</a>
+            <div class="lang-switcher">
+                <span onclick="changeLang('zh')">ZH</span>
+                <span onclick="changeLang('en')">EN</span>
+                <span onclick="changeLang('ja')">JA</span>
+            </div>
         </div>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
     <main class="container" style="padding-top: 120px; padding-bottom: 80px;">
@@ -50,6 +57,7 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
     const privacyI18n = {
         zh: {

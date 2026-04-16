@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MTNGTCEVWX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MTNGTCEVWX');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Trendy Island</title>
+    <meta name="description" content="Learn about Trendy Island — a deep-dive podcast at the intersection of fashion, culture, and society. New episodes every week.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trendyisland.pages.dev/about.html">
+    <meta property="og:title" content="About | Trendy Island">
+    <meta property="og:description" content="Learn about Trendy Island — a deep-dive podcast at the intersection of fashion, culture, and society.">
+    <meta property="og:image" content="https://trendyisland.pages.dev/images/og-image.jpg">
+    <link rel="alternate" hreflang="zh" href="https://trendyisland.pages.dev/about.html?lang=zh">
+    <link rel="alternate" hreflang="en" href="https://trendyisland.pages.dev/about.html?lang=en">
+    <link rel="alternate" hreflang="ja" href="https://trendyisland.pages.dev/about.html?lang=ja">
+    <link rel="alternate" hreflang="x-default" href="https://trendyisland.pages.dev/about.html">
+    <link rel="canonical" href="https://trendyisland.pages.dev/about.html">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8498828662253410"
+         crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">TRENDY ISLAND</a>
+        <div class="nav-links" id="nav-links">
+            <a href="/about.html" id="nav-about" class="nav-link">About</a>
+            <a href="/episodes.html" id="nav-episodes" class="nav-link">Episodes</a>
+            <div class="lang-switcher">
+                <span onclick="changeLang('zh')">ZH</span>
+                <span onclick="changeLang('en')">EN</span>
+                <span onclick="changeLang('ja')">JA</span>
+            </div>
+        </div>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main class="container page-main">
+        <section class="glass-card about-section">
+            <h1 id="about-title" style="font-family:'Archivo',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);background:linear-gradient(135deg,#ff8a00,#e52e71);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:0;">About Us</h1>
+            <div id="about-content" class="warm-text"></div>
+        </section>
+
+        <section id="topics" class="glass-card topics-section">
+            <h2 id="topics-title">Topics We Explore</h2>
+            <div id="topics-tags" class="topic-tags"></div>
+        </section>
+
+        <section id="podcast" class="podcast-section">
+            <h2 id="podcast-label">Listen to Trendy Island</h2>
+            <div class="podcast-container">
+                <a href="https://open.spotify.com/show/0b0bvzZ64hTaifBIOC69g6" target="_blank" rel="noopener noreferrer" class="podcast-link spotify-btn">
+                    <div class="icon-wrapper">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
+                    </div>
+                    <span>Spotify</span>
+                </a>
+                <a href="https://podcasts.apple.com/podcast/1866784652" target="_blank" rel="noopener noreferrer" class="podcast-link apple-btn">
+                    <div class="icon-wrapper">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Podcasts_%28iOS%29.svg" alt="Apple Podcast">
+                    </div>
+                    <span>Apple Podcasts</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-gradient-line"></div>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2 class="logo">TRENDY ISLAND</h2>
+                <p id="footer-slogan"></p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 id="footer-follow"></h4>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"></a>
+                        <a href="#" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Trendy Island. All Rights Reserved. &nbsp;·&nbsp; <a href="/privacy.html" id="footer-privacy" class="footer-privacy-link">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <div id="back-to-top" onclick="scrollToTop()">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
