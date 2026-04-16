@@ -110,6 +110,7 @@
 
   const SPOTIFY_SHOW = 'https://open.spotify.com/show/0b0bvzZ64hTaifBIOC69g6';
   const APPLE_SHOW   = 'https://podcasts.apple.com/podcast/1866784652';
+  const PREVIEW_LEN  = 200;
 
   function buildCard(ep, query) {
     // Pick content for active language, fall back to whichever exists
@@ -122,6 +123,11 @@
     const spotifyHref = escHtml(content.spotifyUrl || SPOTIFY_SHOW);
     const appleHref   = escHtml(content.appleUrl   || APPLE_SHOW);
 
+    const fullDesc = content.description || '';
+    // Collapse long descriptions only when no active search query
+    const isLong   = !query && fullDesc.length > PREVIEW_LEN;
+    const preview  = isLong ? fullDesc.slice(0, PREVIEW_LEN).trimEnd() : fullDesc;
+
     card.innerHTML = `
       <div class="episode-meta">
         <span class="episode-num">EP.${escHtml(ep.episode)}</span>
@@ -129,12 +135,23 @@
         ${content.duration ? `<span class="episode-duration">${escHtml(content.duration)}</span>` : ''}
       </div>
       <h3 class="episode-title">${highlight(escHtml(content.title), query)}</h3>
-      ${content.description ? `<p class="episode-desc">${highlight(escHtml(content.description), query)}</p>` : ''}
+      ${fullDesc ? `<p class="episode-desc">${highlight(escHtml(preview), query)}${isLong ? '<span class="desc-ellipsis">…</span>' : ''}</p>` : ''}
+      ${isLong ? `<button type="button" class="ep-expand-btn">${escHtml(langData.episodes_read_more || 'Read more')}</button>` : ''}
       <div class="episode-links">
         <a href="${spotifyHref}" target="_blank" rel="noopener noreferrer" class="ep-platform-btn ep-spotify">Spotify</a>
         <a href="${appleHref}" target="_blank" rel="noopener noreferrer" class="ep-platform-btn ep-apple">Apple Podcasts</a>
       </div>
     `;
+
+    if (isLong) {
+      const btn     = card.querySelector('.ep-expand-btn');
+      const descEl  = card.querySelector('.episode-desc');
+      btn.addEventListener('click', () => {
+        descEl.textContent = fullDesc;
+        btn.remove();
+      });
+    }
+
     return card;
   }
 

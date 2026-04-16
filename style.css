@@ -567,6 +567,47 @@ mark {
     .social-icons { margin-top: 10px; margin-right: 0; }
     .social-icons a { margin: 0 10px; }
 }
+/* --- warm-text multi-paragraph --- */
+.warm-text p {
+    margin: 0 0 1rem;
+}
+.warm-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Episode expand button --- */
+.ep-expand-btn {
+    display: inline-block;
+    margin: 2px 0 10px;
+    padding: 4px 14px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.78rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.3px;
+}
+
+.ep-expand-btn:hover {
+    border-color: rgba(255, 138, 0, 0.5);
+    color: #ff8a00;
+}
+
+/* --- Footer privacy link --- */
+.footer-privacy-link {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.footer-privacy-link:hover {
+    opacity: 1;
+}
+
 /* 導覽列 Logo 圖標優化 */
 .logo-icon {
     width: 32px;

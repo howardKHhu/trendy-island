@@ -13,7 +13,7 @@ const APPLE_PODCAST_ID = '1866784652';
 const CACHE_TTL = 3600; // seconds
 
 export async function onRequest(context) {
-  const cacheKey = new Request('https://trendyisland-episodes-cache/v5', context.request);
+  const cacheKey = new Request('https://trendyisland-episodes-cache/v6', context.request);
   const cache = caches.default;
 
   // Serve from edge cache if available
@@ -94,9 +94,7 @@ function parseRss(xml) {
       return {
         episode: episodeNum || String(rawItems.length - index),
         title,
-        description: cleanDesc.length > 280
-          ? cleanDesc.slice(0, 280).trimEnd() + '...'
-          : cleanDesc,
+        description: cleanDesc,
         date,
         duration: formatDuration(duration),
         spotifyUrl,
